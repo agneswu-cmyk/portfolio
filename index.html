@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&amp;family=Archivo+Black&amp;family=Space+Mono:wght@400;700&amp;family=Noto+Sans+TC:wght@300;400;500;700;900&amp;family=Noto+Serif+TC:wght@300;400;500;600;700;900&amp;display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #f4f1ea; }
+  ::selection { background: #f03a17; color: #f4f1ea; }
+
+  @media (max-width: 768px) {
+    /* NAV */
+    nav { padding: 12px 20px !important; }
+    nav > div { gap: 14px !important; font-size: 10px !important; }
+    nav > div > a:not(:last-child) { display: none; }
+
+    /* HERO */
+    header { padding: 16px 20px 0 !important; }
+    header > div:first-child { font-size: 10px !important; flex-direction: column; gap: 4px !important; }
+    header > div:nth-child(2) { padding: 28px 0 20px !important; }
+    header > div:nth-child(2) > div:first-child { font-size: 72px !important; width: auto !important; height: auto !important; }
+    header > div:nth-child(2) > div:last-child { flex-direction: column !important; gap: 0 !important; }
+    header > div:nth-child(2) > div:last-child > div:first-child { font-size: 72px !important; width: auto !important; height: auto !important; }
+    header > div:nth-child(2) > div:last-child > div:last-child { width: 100% !important; padding-bottom: 16px !important; }
+    header > div:nth-child(2) > div:last-child > div:last-child > div { width: auto !important; height: auto !important; }
+
+    /* HERO INTRO GRID */
+    header > div:nth-child(4) { grid-template-columns: 1fr !important; }
+    header > div:nth-child(4) > p { border-right: none !important; padding: 24px 0 16px !important; font-size: 22px !important; }
+    header > div:nth-child(4) > div { padding: 0 0 28px !important; }
+
+    /* SECTIONS */
+    section, article { padding-left: 20px !important; padding-right: 20px !important; }
+
+    /* ABOUT GRID */
+    section#about > div:last-child { grid-template-columns: 1fr !important; gap: 32px !important; }
+    section#about h2 { font-size: 40px !important; }
+
+    /* CONTENTS TABLE */
+    section#work a[href] { grid-template-columns: 50px 1fr !important; }
+    section#work a[href] > span:nth-child(3),
+    section#work a[href] > span:nth-child(4) { display: none; }
+    section#work a[href] > span:nth-child(2) { font-size: 16px !important; }
+
+    /* PROJECT ARTICLES */
+    article { padding: 48px 20px !important; }
+    article > div:first-child h3 { font-size: 24px !important; }
+
+    /* PROFILE / APPROACH GRIDS */
+    div[style*="grid-template-columns: 1fr 1fr"] { grid-template-columns: 1fr !important; }
+    div[style*="grid-template-columns: 1.5fr"] { grid-template-columns: 1fr !important; }
+    div[style*="grid-template-columns: 1.6fr"] { grid-template-columns: 1fr !important; }
+    div[style*="grid-template-columns: 2fr"] { grid-template-columns: 1fr !important; }
+
+    /* CONTACT FOOTER */
+    div[style*="grid-template-columns: repeat(3"] { grid-template-columns: 1fr !important; }
+    div[style*="grid-template-columns: repeat(4"] { grid-template-columns: 1fr 1fr !important; }
+  }
+</style>
+<template id="__bundler_thumbnail" data-bg-color="#f4f1ea">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#f4f1ea"></rect>
+    <text x="600" y="320" font-family="'Archivo Black', sans-serif" font-size="180" font-weight="900" text-anchor="middle" fill="#1a1714" letter-spacing="-2">AGNES</text>
+    <text x="600" y="520" font-family="'Archivo Black', sans-serif" font-size="180" font-weight="900" text-anchor="middle" fill="#1a1714" letter-spacing="-2">WU</text>
+    <circle cx="600" cy="650" r="8" fill="#1b43c0"></circle>
+  </svg>
+</template>
+</helmet>
+
+<div style="background: #f4f1ea; color: #1a1714; font-family: 'Noto Serif TC', serif; -webkit-font-smoothing: antialiased;">
+
+  <!-- ===================== NAV ===================== -->
+  <nav style="position: sticky; top: 0; z-index: 60; background: rgba(244,241,234,0.92); backdrop-filter: blur(8px); border-bottom: 1.5px solid #1a1714; display: flex; justify-content: space-between; align-items: center; padding: 13px 40px;">
+    <a href="#top" style="font-family: 'Archivo Black', sans-serif; font-size: 16px; letter-spacing: 0.01em; color: #1a1714; text-decoration: none;">AGNES&nbsp;WU<span style="color: {{ accent }};">©</span></a>
+    <div style="display: flex; align-items: center; gap: 28px; font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;">
+      <a href="#about" style="color: #1a1714; text-decoration: none;" style-hover="color: {{ accent }};">關於</a>
+      <a href="#work" style="color: #1a1714; text-decoration: none;" style-hover="color: {{ accent }};">作品</a>
+      <a href="#approach" style="color: #1a1714; text-decoration: none;" style-hover="color: {{ accent }};">方法</a>
+      <a href="#services" style="color: #1a1714; text-decoration: none;" style-hover="color: {{ accent }};">服務</a>
+      <a href="#profile" style="color: #1a1714; text-decoration: none;" style-hover="color: {{ accent }};">簡歷</a>
+      <a href="#contact" style="background: #1a1714; color: #f4f1ea; text-decoration: none; padding: 7px 16px; letter-spacing: 0.12em;" style-hover="background: {{ accent }};">聯絡 ↗</a>
+    </div>
+  </nav>
+
+  <!-- ===================== HERO ===================== -->
+  <header id="top" style="padding: 30px 40px 0;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; padding-bottom: 14px; border-bottom: 1px solid #c9c3b6;">
+      <span style="color: {{ accent }};">The Brand Issue — Vol.01</span>
+      <span style="color: #6b665e;">品牌視覺設計師 · 求職作品集</span>
+      <span style="color: #6b665e;">臺灣 / Taipei — 2026</span>
+    </div>
+
+    <div style="padding: 56px 0 34px;">
+      
+      <div style="font-family: 'Archivo Black', sans-serif; font-size: 188px; line-height: 0.83; letter-spacing: -0.4px; margin: 0; width: 646px; height: 172px">AGNES</div><div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 40px;">
+        
+        <div style="font-family: 'Archivo Black', sans-serif; font-size: 188px; line-height: 0.83; letter-spacing: -0.035em; width: 325px; height: 184px">WU</div><div style="flex: none; width: 380px; padding-bottom: 30px;">
+          <div style="font-family: 'Noto Sans TC', sans-serif; font-weight: 900; font-size: 22px; line-height: 1.5;">資深品牌視覺設計師</div>
+          
+          <div style="font-family: 'Noto Serif TC', serif; font-size: 16px; color: #574f43; margin-top: 6px; line-height: 1.6;">品牌視覺整合　×　O2O 體驗設計</div><div style="height: 1px; background: #c9c3b6; margin: 18px 0;"></div><div style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.1em; line-height: 1.9; color: #6b665e; text-transform: uppercase; width: 317px; height: 52px">
+            狀態 — <span style="color: rgb(27, 67, 192);">開放面試邀約</span><br>
+            年資 — 十年以上 / 10+ Years<br>
+            專長 — 識別 / 包裝 / O2O 整合<span style="letter-spacing: 1.1px;"> / </span>展覽 / IP
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div style="height: 5px; background: #1a1714;"></div><div style="display: grid; grid-template-columns: 1.6fr 1fr; gap: 0; border-bottom: 1.5px solid #1a1714;">
+      <p style="font-family: 'Noto Serif TC', serif; font-weight: 500; font-size: 30px; line-height: 1.55; margin: 0; padding: 34px 48px 38px 0; border-right: 1px solid #c9c3b6; color: #4d4d4d">我相信品牌是有靈魂的。從零建過餐廳、食品零售、服飾、個性咖啡館——每一個都從『為什麼做這件事；我相信什麼信念』開始建構。</p>
+      <div style="padding: 34px 0 38px 48px; display: flex; flex-direction: column; justify-content: space-between;">
+        
+        <p style="font-family: 'Noto Serif TC', serif; font-size: 17px; line-height: 1.85; margin: 0; color: #574f43;">帶著這份對品牌核心的堅持，我現在投入社會企業；讓民眾在自然愉悅舒適的狀態下的參與社會議題。公益這件事融入在生活中，讓消費行為漸漸融入永續的日常。我也用 AI 操盤 IP 內容，透過有趣的視覺故事，把生硬的弱勢議題轉化為有溫度、引人深思的品牌對話。</p><a href="#work" style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #1a1714; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; width: fit-content;">下滑閱讀作品 <span style="font-size: 16px;">↓</span></a>
+      </div>
+      
+    </div>
+    
+  </header>
+
+  <!-- ===================== 01 ABOUT ===================== -->
+  <section id="about" style="padding: 0 40px;">
+    <div style="display: flex; align-items: baseline; gap: 22px; padding: 26px 0 22px;">
+      <span style="font-family: 'Archivo Black', sans-serif; font-size: 30px; color: {{ accent }};">A</span>
+      <span style="font-family: 'Space Mono', monospace; font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; color: #1a1714;">關於 / About</span>
+      <span style="flex: 1; height: 1px; background: #c9c3b6;"></span>
+      <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #6b665e; text-transform: uppercase;">Who I Am</span>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1.05fr; gap: 64px; padding: 30px 0 72px;">
+      
+      <div>
+        <h2 style="font-family: 'Noto Serif TC', serif; font-weight: 700; font-size: 56px; line-height: 1.25; margin: 0;">品牌，<br>是有<span style="font-style: normal; color: {{ accent }};">靈魂</span>的。</h2>
+        <div style="margin-top: 36px; display: flex; flex-direction: column; gap: 14px;">
+          <div style="display: flex; gap: 14px; align-items: baseline;"><span style="font-family: 'Space Mono', monospace; font-size: 11px; color: {{ accent }}; letter-spacing: 0.1em; width: 64px;">RANGE</span><span style="font-family: 'Noto Sans TC', sans-serif; font-size: 16px; color: #2a2620; width: 152px; height: 51px">品牌識別 · 包裝 · 展覽 · IP 內容</span></div>
+          <div style="display: flex; gap: 14px; align-items: baseline;"><span style="font-family: 'Space Mono', monospace; font-size: 11px; color: {{ accent }}; letter-spacing: 0.1em; width: 64px;">FROM</span><span style="font-family: 'Noto Sans TC', sans-serif; font-size: 16px; color: #2a2620; width: 151px; height: 46px">從零建構品牌，一路想到怎麼跟人說話</span></div>
+          <div style="display: flex; gap: 14px; align-items: baseline;"><span style="font-family: 'Space Mono', monospace; font-size: 11px; color: {{ accent }}; letter-spacing: 0.1em; width: 64px;">NOW</span><span style="font-family: 'Noto Sans TC', sans-serif; font-size: 16px; color: #2a2620; width: 151px; height: 51px">社會議題的商業美學轉譯</span></div>
+        </div>
+      </div><div style="font-family: 'Noto Serif TC', serif;">
+        <p style="font-size: 19px; line-height: 1.95; margin: 0 0 22px; color: #2a2620;">『品牌，是有靈魂的。』這不是說說，是我從零建構過餐飲、零售與風格品牌後，刻在骨子裡的信仰。從釐清「為什麼做這件事」到定義「這東西是誰」，再一路將信念延伸至空間、包裝、社群，讓品牌真正開口與人對話建立信任，來回反覆一層層的堆砌上來。</p>
+        <p style="font-size: 19px; line-height: 1.95; margin: 0 0 22px; color: #2a2620; font-family: Noto Serif TC">現在在社會企業做設計，用 AI 工具操盤 IP 內容，讓弱勢議題說出有溫度的故事。</p><div><p class="p1" style="margin: 0px; font-style: normal; font-variant: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-stretch: normal; font-size: 19px; line-height: 1.95; font-family: Noto Serif TC; color: rgb(0, 0, 0)">也做共創設計，這更是溫度到爆炸的事情！除了要深入跟企業端的需求之外，也要讓弱勢族群讓他們被看見被欣賞，精準透過<span class="s1" style="font-style: normal; font-variant: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;;">SROI</span>對接到企業<span class="s1" style="font-style: normal; font-variant: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-stretch: normal; font-size: 13px; line-height: normal; font-family: &quot;Helvetica Neue&quot;;">ESG</span>永續告告書裡面。</p></div><p></p>
+        <p style="font-size: 19px; line-height: 1.95; margin: 0; color: #2a2620;">設計對我來說除了美感——還要一整套<span style="font-weight: 700; border-bottom: 2px solid rgb(27, 67, 192);">翻譯的邏輯</span>。在商業需求和使用者感受間不段切換視角，最終精準落地，一起互惠。<br></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 02 WORK — CONTENTS ===================== -->
+  <section id="work" style="background: {{ contentsBg }}; color: {{ contentsFg }}; padding: 0 40px;">
+    <div style="display: flex; align-items: baseline; gap: 22px; padding: 40px 0 22px;">
+      <span style="font-family: 'Archivo Black', sans-serif; font-size: 30px; color: {{ accent }};">B</span>
+      <span style="font-family: 'Space Mono', monospace; font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase;">作品 / Contents</span>
+      <span style="flex: 1; height: 1px; background: {{ contentsRule }};"></span>
+      <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: {{ contentsSub }}; text-transform: uppercase;">代表專案 08 件</span>
+    </div>
+        <div style="padding-bottom: 20px;">
+      <a href="#p01_321" style="display: grid; grid-template-columns: 70px 1fr 240px 120px; align-items: center; gap: 20px; padding: 18px 0; border-bottom: 1px solid {{ contentsRule }}; text-decoration: none; color: {{ contentsFg }};">
+        <span style="font-family: 'Archivo Black', sans-serif; font-size: 26px; color: {{ accent }};">01</span>
+        
+        <span style="font-family: 'Noto Sans TC', sans-serif; font-weight: 900; font-size: 24px;">321 世界唐氏症日特展．<br>中華民國唐氏症基金會</span><span style="font-family: 'Space Mono', monospace; font-size: 12px; color: {{ contentsSub }}; letter-spacing: 0.08em;">展演體驗 ‧ AI 視覺流程</span>
+        <span style="font-family: 'Space Mono', monospace; font-size: 12px; color: {{ contentsSub }}; text-align: right;"></span>
+      </a>
+      <a href="#p02_tsca" style="display: grid; grid-template-columns: 70px 1fr 240px 120px; align-items: center; gap: 20px; padding: 18px 0; border-bottom: 1px solid {{ contentsRule }}; text-decoration: none; color: {{ contentsFg }};">
+        <span style="font-family: 'Archivo Black', sans-serif; font-size: 26px; color: {{ accent }};">02</span>
+        <span style="font-family: 'Noto Sans TC', sans-serif; font-weight: 900; font-size: 24px;">TSCA 永續挑戰七日網頁視覺設計．台灣永續傳播協會</span>
+        <span style="font-family: 'Space Mono', monospace; font-size: 12px; color: {{ contentsSub }}; letter-spacing: 0.08em;">數位視覺 ‧ 網頁 UI</span>
+        <span style="font-family: 'Space Mono', monospace; font-size: 12px; color: {{ contentsSub }}; text-align: right;"></span>
+      </a>
+      <a href="#p03_hirs" style="display: grid; grid-template-columns: 70px 1fr 240px 120px; align-items: center; gap: 20px; padding: 18px 0; border-bottom: 1px solid {{ contentsRule }}; text-decoration: none; color: {{ contentsFg }};">
+        <span style="font-family: 'Archivo Black', sans-serif; font-size: 26px; color: {{ accent }};">03</span>
+        <span style="font-family: 'Noto Sans TC', sans-serif; font-weight: 900; font-size: 24px;">HiRS 堅果燕麥品牌營運暨視覺設計</span>
+        <span style="font-family: 'Space Mono', monospace; font-size: 12px; color: {{ contentsSub }}; letter-spacing: 0.08em;">O2O 視覺 ‧ 品牌營運</span>
+        <span style="font-family: 'Space Mono', monospace; font-size: 12px; color: {{ contentsSub }}; text-align: right;"></span>
+      </a>
+      <a href="#p04_qiaoxi" style="display: grid; grid-template-columns: 70px 1fr 240px 120px; align-items: center; gap: 20px; padding: 18px 0; border-bottom: 1px solid {{ contentsRule }}; text-decoration: none; color: {{ contentsFg }};">
+        <span style="font-family: 'Archivo Black', sans-serif; font-size: 26px; color: {{ contentsSub }};">04</span>
+        
+        <span style="font-family: 'Noto Sans TC', sans-serif; font-weight: 900; font-size: 24px;">企業禮贈品包裝設計．<br>巧新科技</span><span style="font-family: 'Space Mono', monospace; font-size: 12px; color: {{ contentsSub }}; letter-spacing: 0.08em;">科技業 B2B ‧ 企業公關視覺</span>
+        <span style="font-family: 'Space Mono', monospace; font-size: 12px; color: {{ contentsSub }}; text-align: right;"></span>
+      </a>
+      <a href="#p05_tuyugongong" style="display: grid; grid-template-columns: 70px 1fr 240px 120px; align-items: center; gap: 20px; padding: 18px 0; border-bottom: 1px solid {{ contentsRule }}; text-decoration: none; color: {{ contentsFg }};">
+        <span style="font-family: 'Archivo Black', sans-serif; font-size: 26px; color: {{ contentsSub }};">05</span>
+        <span style="font-family: 'Noto Sans TC', sans-serif; font-weight: 900; font-size: 24px;">土地工工品牌視覺整合</span>
+        <span style="font-family: 'Space Mono', monospace; font-size: 12px; color: {{ contentsSub }}; letter-spacing: 0.08em;">品牌視覺 ‧ 跨媒材整合</span>
+        <span style="font-family: 'Space Mono', monospace; font-size: 12px; color: {{ contentsSub }}; text-align: right;"></span>
+      </a>
+      <a href="#p06_dan" style="display: grid; grid-template-columns: 70px 1fr 240px 120px; align-items: center; gap: 20px; padding: 18px 0; border-bottom: 1px solid {{ contentsRule }}; text-decoration: none; color: {{ contentsFg }};">
+        <span style="font-family: 'Archivo Black', sans-serif; font-size: 26px; color: {{ contentsSub }};">06</span>
+        <span style="font-family: 'Noto Sans TC', sans-serif; font-weight: 900; font-size: 24px;">彩映幸福公益蛋捲禮盒包裝．青鳥旅行</span>
+        <span style="font-family: 'Space Mono', monospace; font-size: 12px; color: {{ contentsSub }}; letter-spacing: 0.08em;">ESG 永續 ‧ 共創設計</span>
+        <span style="font-family: 'Space Mono', monospace; font-size: 12px; color: {{ contentsSub }}; text-align: right;"></span>
+      </a>
+      <a href="#p07_yuanlong" style="display: grid; grid-template-columns: 70px 1fr 240px 120px; align-items: center; gap: 20px; padding: 18px 0; border-bottom: 1px solid {{ contentsRule }}; text-decoration: none; color: {{ contentsFg }};">
+        <span style="font-family: 'Archivo Black', sans-serif; font-size: 26px; color: {{ accent }};">07</span>
+        <span style="font-family: 'Noto Sans TC', sans-serif; font-weight: 900; font-size: 24px;">愛的里程數企業禮贈品設計．裕隆汽車</span>
+        <span style="font-family: 'Space Mono', monospace; font-size: 12px; color: {{ contentsSub }}; letter-spacing: 0.08em;">企業品牌禮贈 ‧ 實體接觸點</span>
+        <span style="font-family: 'Space Mono', monospace; font-size: 12px; color: {{ contentsSub }}; text-align: right;"></span>
+      </a>
+      <a href="#p08_ytxs" style="display: grid; grid-template-columns: 70px 1fr 240px 120px; align-items: center; gap: 20px; padding: 18px 0; text-decoration: none; color: {{ contentsFg }};">
+        <span style="font-family: 'Archivo Black', sans-serif; font-size: 26px; color: {{ contentsSub }};">08</span>
+        <span style="font-family: 'Noto Sans TC', sans-serif; font-weight: 900; font-size: 24px;">魚頭先生社會議題圖文社群經營</span>
+        <span style="font-family: 'Space Mono', monospace; font-size: 12px; color: {{ contentsSub }}; letter-spacing: 0.08em;">IP 內容 ‧ 社群經營</span>
+        <span style="font-family: 'Space Mono', monospace; font-size: 12px; color: {{ contentsSub }}; text-align: right;"></span>
+      </a>
+    </div>
+    <div style="height: 40px;"></div>
+  </section>
+
+  <!-- ===================== PROJECT FEATURES ===================== -->
+  <section style="padding: 0 40px;">
+    <!-- P01: 321 世界唐氏症日特展 -->
+<article id="p01_321" style="display: block; padding: 76px 0; border-bottom: 1px solid #c9c3b6;">
+      <div style="margin-bottom: 56px;">
+        <div style="display: flex; align-items: baseline; gap: 18px;"><span style="font-family: 'Archivo Black', sans-serif; font-size: 48px; color: {{ accent }}; line-height: 1;">01</span><span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.1em; color: #6b665e; text-transform: uppercase;">展覽展示 · AI 流程</span></div>
+        <h3 style="font-family: 'Noto Sans TC', sans-serif; font-weight: 900; font-size: 32px; margin: 14px 0 0; line-height: 1.2;">321 世界唐氏症日特展</h3>
+        <p style="font-family: 'Noto Serif TC', serif; font-size: 15px; line-height: 1.7; color: #2a2620; margin: 16px 0 0; max-width: 800px;"><strong>抓出痛點：</strong>公益展覽難以吸引大眾主動靠近，同情、可憐嚴肅的議題，容易停留在同溫層。<br><strong>為什麼這樣解？『</strong>共融』爲展覽溝通邏輯；色彩繽紛、流行、互動元素、民間信仰作為切入點——信仰是台灣最大公約數，把平權放進廟口文化，讓陌生的人從熟悉的地方走進來。以流行元素 IP 角色「F4 神明」為視覺核心；空間導入『通用設計』思維，將神轎加高 1.5 公尺，讓站立、乘坐或爬行的人都能在同一高度獲得祝福，空間設計本身就是平權宣言。<br><strong>我做了什麼？</strong>展覽視覺落地執行：從 IP 視覺符號到用流行感的漫畫，將嚴肅的議題轉譯為有趣的故事。AI 流程輔助：敘事架構與圖文產製，大幅提升效率。商業價值延伸：展後周邊商品開發（如：乖乖『媽祖抵家風雨免驚』-椰子口味零食、F4神明護身符），讓善的循環持續流動。</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px;">
+          <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.08em; border: 1px solid #1a1714; padding: 5px 12px; text-transform: uppercase;">展覽視覺</span>
+          <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.08em; border: 1px solid #1a1714; padding: 5px 12px; text-transform: uppercase;">議題策展</span>
+          <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.08em; border: 1px solid #1a1714; padding: 5px 12px; text-transform: uppercase;">AI 敘事</span>
+        </div>
+      </div>
+      <div style="border: 1px solid #d8d2c4; margin-bottom: 2px;"><img src="images/p01-321-01.jpg" style="width: 100%; height: auto; display: block;"></div>
+      <div style="border: 1px solid #d8d2c4; margin-bottom: 2px;"><img src="images/p01-321-02.jpg" style="width: 100%; height: auto; display: block;"></div>
+      <div style="border: 1px solid #d8d2c4; margin-bottom: 2px;"><img src="images/p01-321-03.jpg" style="width: 100%; height: auto; display: block;"></div>
+      <div style="border: 1px solid #d8d2c4; margin-bottom: 2px;"><img src="images/p01-321-04.jpg" style="width: 100%; height: auto; display: block;"></div>
+      <div style="border: 1px solid #d8d2c4; margin-bottom: 2px;"><img src="images/p01-321-05.jpg" style="width: 100%; height: auto; display: block;"></div>
+      <div style="border: 1px solid #d8d2c4;"><img src="images/p01-321-06.jpg" style="width: 100%; height: auto; display: block;"></div>
+    </article>
+
+    <!-- P02: TSCA 永續挑戰七日 -->
+<article id="p02_tsca" style="display: block; padding: 76px 0; border-bottom: 1px solid #c9c3b6;">
+      <div style="margin-bottom: 56px;">
+        <div style="display: flex; align-items: baseline; gap: 18px;"><span style="font-family: 'Archivo Black', sans-serif; font-size: 48px; color: #1a1714; line-height: 1;">02</span><span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.1em; color: #6b665e; text-transform: uppercase;">數位視覺 · 網頁UI</span></div>
+        <h3 style="font-family: 'Noto Sans TC', sans-serif; font-weight: 900; font-size: 32px; margin: 14px 0 0; line-height: 1.2;">TSCA — 永續挑戰七日網頁視覺設計</h3>
+        <p style="font-family: 'Noto Serif TC', serif; font-size: 15px; line-height: 1.7; color: #2a2620; margin: 16px 0 0; max-width: 800px; width: 790px; height: 160px"><strong>抓出痛點：</strong>永續議題資訊量龐大，網頁視覺往往過度堆疊，使用者很快失去耐心，行動轉換率低。<br><strong>為什麼這樣解？</strong>以簡化的手繪圖，代替複雜資訊的第一線接觸；透過輕鬆的敘事：用「第一人稱上班族 IP」來傳達永續的一天。這不僅精準鎖定了目標客群（TA），更引導使用者一步步從認識走向行動，從發散的內容中，聚焦出最有效的資訊瀏覽路徑。<strong><br></strong><strong>我做了什麼？</strong>網頁視覺系統；色彩、字型、版式規範建立。視覺稿設計；Banner、各頁版面、行動呼籲CTA、與廣告投放圖片模組完整設計。
+資訊層級梳理；協助內容團隊將複雜訊息整理成易讀易懂的結構。<br></p><div style="font-size: 14px; font-family: Noto Serif TC; color: #796b5c">🔗 專案上線網頁：<a href="https://www.agoood.com/tsca-sustanability" target="_blank" style="color: rgb(121, 107, 92); text-decoration: underline;">www.agoood.com/tsca-sustanability</a>anability</div><p></p>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px;">
+          <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.08em; border: 1px solid #1a1714; padding: 5px 12px; text-transform: uppercase;">網頁設計</span>
+          <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.08em; border: 1px solid #1a1714; padding: 5px 12px; text-transform: uppercase;">視覺系統</span>
+          <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.08em; border: 1px solid #1a1714; padding: 5px 12px; text-transform: uppercase;">永續轉譯</span>
+        </div>
+      </div>
+      <div style="border: 1px solid #d8d2c4;"><img src="images/p04-tsca.jpg" style="width: 100%; height: auto; display: block;"></div>
+    </article>
+
+    <!-- P03: HiRS 堅果燕麥 -->
+<article id="p03_hirs" style="display: block; padding: 76px 0; border-bottom: 1px solid #c9c3b6;">
+      <div style="margin-bottom: 56px;">
+        <div style="display: flex; align-items: baseline; gap: 18px;"><span style="font-family: 'Archivo Black', sans-serif; font-size: 48px; color: {{ accent }}; line-height: 1;">03</span><span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.1em; color: #6b665e; text-transform: uppercase;">品牌 · 視覺</span></div>
+        <h3 style="font-family: 'Noto Sans TC', sans-serif; font-weight: 900; font-size: 32px; margin: 14px 0 0; line-height: 1.2;">HiRS 堅果燕麥 — 品牌營運暨視覺設計</h3>
+        <p style="font-family: 'Noto Serif TC', serif; font-size: 15px; line-height: 1.7; color: #2a2620; margin: 16px 0 0; max-width: 800px;"><strong>抓出痛點？</strong>手工燕麥餅乾可以搭配優格鮮奶當正餐或點心，對於台灣在地消費者新穎，吃法不熟悉。<br><strong>為什麼這樣解？</strong>把「愛家人與永續生活」的靈魂抓出來。強調天然 · 健康 · 美味的日常。<br><strong>我做了什麼？</strong>插畫設計；手繪插畫呼應手工製作。包裝設計；環保牛皮夾鏈袋，讓產品本身成為品牌最有力的名片。</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px;">
+          <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.08em; border: 1px solid #1a1714; padding: 5px 12px; text-transform: uppercase;">品牌識別</span>
+          <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.08em; border: 1px solid #1a1714; padding: 5px 12px; text-transform: uppercase;">O2O 體驗設計</span><span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.08em; border: 1px solid #1a1714; padding: 5px 12px; text-transform: uppercase;">電商行銷暨視覺設計</span><span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.08em; border: 1px solid #1a1714; padding: 5px 12px; text-transform: uppercase;">包裝設計</span>
+          
+        </div>
+      </div>
+      <div style="border: 1px solid #d8d2c4; margin-bottom: 2px;"><img src="images/p02-hirs-01.jpg" style="width: 100%; height: auto; display: block;"></div>
+      <div style="border: 1px solid #d8d2c4; margin-bottom: 2px;"><img src="images/p02-hirs-02.jpg" style="width: 100%; height: auto; display: block;"></div>
+      <div style="border: 1px solid #d8d2c4; margin-bottom: 2px;"><img src="images/p02-hirs-03.jpg" style="width: 100%; height: auto; display: block;"></div>
+      <div style="border: 1px solid #d8d2c4;"><img src="images/p02-hirs-04.jpg" style="width: 100%; height: auto; display: block;"></div>
+    </article>
+
+    <!-- P04: 巧新科技 -->
+<article id="p04_qiaoxi" style="display: block; padding: 76px 0; border-bottom: 1px solid #c9c3b6;">
+      <div style="margin-bottom: 56px;">
+        <div style="display: flex; align-items: baseline; gap: 18px;"><span style="font-family: 'Archivo Black', sans-serif; font-size: 48px; color: #1a1714; line-height: 1;">04</span><span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.1em; color: #6b665e; text-transform: uppercase;">商業包裝 · 企業禮贈品</span></div>
+        <h3 style="font-family: 'Noto Sans TC', sans-serif; font-weight: 900; font-size: 32px; margin: 14px 0 0; line-height: 1.2;">巧新科技 — 企業禮贈品包裝設計</h3>
+        <p style="font-family: 'Noto Serif TC', serif; font-size: 15px; line-height: 1.7; color: #2a2620; margin: 16px 0 0; max-width: 800px;"><strong>抓出痛點：</strong>企業禮贈品常流於制式，送出去之後印象模糊，無法真正代表品牌的高端形象與永續理念。<br><strong>為什麼這樣解？</strong>把「茶樹純露的天然純粹」與「科技品牌的精準前瞻」結合成一套視覺語言——自然不失專業，精緻不失溫度。包裝即品牌名片，讓收禮者第一眼就記住這家公司的個性。<br><strong>我做了什麼？</strong>包裝視覺設計｜材質選定、排版、色調到完稿。模擬展示｜高質感 Mockup 呈現實際使用情境。品牌一致性把關｜確保禮盒視覺語言與母品牌精神對齊。</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px;">
+          <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.08em; border: 1px solid #1a1714; padding: 5px 12px; text-transform: uppercase;">包裝設計</span>
+          <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.08em; border: 1px solid #1a1714; padding: 5px 12px; text-transform: uppercase;">品質感</span>
+          <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.08em; border: 1px solid #1a1714; padding: 5px 12px; text-transform: uppercase;">企業禮品</span>
+        </div>
+      </div>
+      <div style="border: 1px solid #d8d2c4; margin-bottom: 2px;"><img src="uploads/土地工工巧新科技.jpg" style="width: 100%; height: auto; display: block;"></div>
+      <div style="border: 1px solid #d8d2c4; margin-bottom: 2px;"><img src="uploads/模擬一.jpg" style="width: 100%; height: auto; display: block;"></div>
+      <div style="border: 1px solid #d8d2c4;"><img src="uploads/模擬二.jpg" style="width: 100%; height: auto; display: block;"></div>
+    </article>
+
+    <!-- P05: 土地工工 -->
+<article id="p05_tuyugongong" style="display: block; padding: 76px 0; border-bottom: 1px solid #c9c3b6;">
+      <div style="margin-bottom: 56px;">
+        <div style="display: flex; align-items: baseline; gap: 18px;"><span style="font-family: 'Archivo Black', sans-serif; font-size: 48px; color: {{ accent }}; line-height: 1;">05</span><span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.1em; color: #6b665e; text-transform: uppercase;">廣告設計 · 品牌視覺</span></div>
+        <h3 style="font-family: 'Noto Sans TC', sans-serif; font-weight: 900; font-size: 32px; margin: 14px 0 0; line-height: 1.2;">土地工工 — 品牌視覺網頁投廣視覺</h3>
+        <p style="font-family: 'Noto Serif TC', serif; font-size: 15px; line-height: 1.7; color: #2a2620; margin: 16px 0 0; max-width: 800px;"><strong>抓出痛點：</strong>品牌有故事，但每個溝通接觸點說的不是同一件事，視覺語言散亂，難以留下印象。<br><strong>為什麼這樣解？</strong>先把品牌的信念釘定清楚——「土地工工在做什麼-養地種樹捐贈；為什麼做-土地活化，長輩綠療癒，照護弱勢；為誰做-為人為土地」，再從這個核心發展出一套可延展的視覺邏輯，讓募款頁面、投廣素材、社群貼文都對得上同一個靈魂：『養地種樹捐贈』一整個循環。運用 AI 流程加速視覺整合與多版本輸出，提升執行效率。<br><strong>我做了什麼？</strong>品牌視覺定調；核心色彩、字型、排版語言建立。廣告素材；募款視覺與投廣圖設計，以及廣告影片製作。發散到聚焦；從多方向提案，收斂至最能代表品牌精神的那一套。</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px;">
+          <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.08em; border: 1px solid #1a1714; padding: 5px 12px; text-transform: uppercase;">品牌識別</span>
+          <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.08em; border: 1px solid #1a1714; padding: 5px 12px; text-transform: uppercase;">視覺整合</span>
+          <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.08em; border: 1px solid #1a1714; padding: 5px 12px; text-transform: uppercase;">廣告應用</span>
+        </div>
+      </div>
+      <div style="border: 1px solid #d8d2c4; margin-bottom: 2px;"><img src="uploads/土地工工募款視覺01.jpg" style="width: 100%; height: auto; display: block;"></div>
+      <div style="border: 1px solid #d8d2c4; margin-bottom: 2px;"><img src="uploads/土地工工投廣01.jpg" style="width: 100%; height: auto; display: block;"></div>
+      <div style="border: 1px solid #d8d2c4;"><img src="uploads/土地工工投廣02.jpg" style="width: 100%; height: auto; display: block;"></div>
+    </article>
+
+    <!-- P06: 彩映蛋捲 -->
+<article id="p06_dan" style="display: block; padding: 76px 0; border-bottom: 1px solid #c9c3b6;">
+      <div style="margin-bottom: 56px;">
+        <div style="display: flex; align-items: baseline; gap: 18px;"><span style="font-family: 'Archivo Black', sans-serif; font-size: 48px; color: #1a1714; line-height: 1;">06</span><span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.1em; color: #6b665e; text-transform: uppercase;">商業包裝 · 插畫設計</span></div>
+        <h3 style="font-family: 'Noto Sans TC', sans-serif; font-weight: 900; font-size: 32px; margin: 14px 0 0; line-height: 1.2;">彩映幸福-公益蛋捲禮盒包裝．青鳥旅行</h3>
+        
+        <p style="font-family: 'Noto Serif TC', serif; font-size: 15px; line-height: 1.7; color: #2a2620; margin: 16px 0 0; max-width: 800px;"><strong>抓出痛點：</strong>公益禮盒往往「看起來像公益」，消費者覺得是捐款而非購買，購買動機弱，商業價值低。<br><strong>為什麼這樣解？</strong>讓說故事舒服的承載了社會議題—透過企業與孩子們共創的元素：青鳥、城堡、彩虹、蛋捲，來傳遞希望與幸福；我從發散思考到收斂共創圖，創造把有溫度的插畫作品；賦予插畫故事與包裝質感，禮盒本身就是最有力的敘事。讓消費者透過本來就要送禮，因為這款傳遞幸福的包裝設計，而不知不覺自然而然的做了公益這件事！</p><div><strong>我做了什麼？</strong>共創包裝禮盒設計全流程；從草稿提案到正式設計稿。物理限制的掌控：在環保材質與印刷工藝限制內，做出媲美精品禮盒的質感。</div><p></p><div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px;">
+          <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.08em; border: 1px solid #1a1714; padding: 5px 12px; text-transform: uppercase;">包裝設計</span>
+          <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.08em; border: 1px solid #1a1714; padding: 5px 12px; text-transform: uppercase;">共創課程</span>
+          <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.08em; border: 1px solid #1a1714; padding: 5px 12px; text-transform: uppercase;">精緻落地</span>
+        </div>
+      </div>
+      <div style="border: 1px solid #d8d2c4; margin-bottom: 2px;"><img src="images/p01-egg-mockup.jpg" style="width: 100%; height: auto; display: block;"></div>
+      <div style="border: 1px solid #d8d2c4; margin-bottom: 2px;"><img src="images/p01-egg-process.jpg" style="width: 100%; height: auto; display: block;"></div>
+      <div style="border: 1px solid #d8d2c4; margin-bottom: 2px;"><img src="images/p01-egg-sketches.jpg" style="width: 100%; height: auto; display: block;"></div>
+      <div style="border: 1px solid #d8d2c4; margin-bottom: 2px;"><img src="images/p01-egg-draft-a.jpg" style="width: 100%; height: auto; display: block;"></div>
+      <div style="border: 1px solid #d8d2c4; margin-bottom: 2px;"><img src="images/p01-egg-draft-b.jpg" style="width: 100%; height: auto; display: block;"></div>
+      <div style="border: 1px solid #d8d2c4; margin-bottom: 2px;"><img src="images/p01-egg-final.jpg" style="width: 100%; height: auto; display: block;"></div>
+      <div style="border: 1px solid #d8d2c4; margin-bottom: 2px;"><img src="images/p01-egg-merch.jpg" style="width: 100%; height: auto; display: block;"></div>
+      <div style="border: 1px solid #d8d2c4;"><img src="images/p01-egg-physical.jpg" style="width: 100%; height: auto; display: block;"></div>
+    </article>
+
+    <!-- P07: 裕隆汽車 -->
+<article id="p07_yuanlong" style="display: block; padding: 76px 0; border-bottom: 1px solid #c9c3b6;">
+      <div style="margin-bottom: 56px;">
+        <div style="display: flex; align-items: baseline; gap: 18px;"><span style="font-family: 'Archivo Black', sans-serif; font-size: 48px; color: {{ accent }}; line-height: 1;">07</span><span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.1em; color: #6b665e; text-transform: uppercase;">商業包裝 · 企業禮品</span></div>
+        <h3 style="font-family: 'Noto Sans TC', sans-serif; font-weight: 900; font-size: 32px; margin: 14px 0 0; line-height: 1.2;">裕隆汽車愛的里程數 — 企業禮贈品設計</h3>
+        <p style="font-family: 'Noto Serif TC', serif; font-size: 15px; line-height: 1.7; color: #2a2620; margin: 16px 0 0; max-width: 800px;"><strong>抓出痛點：</strong>企業 CSR 禮品常與品牌本業脫節，公益感強但品牌辨識弱，難以讓消費者產生情感連結。<br><strong>為什麼這樣解？</strong>延續 321 特展的信仰視覺語言——護身符天然連結「守護、祝福、隨行」的情感，與裕隆汽車「陪你走每一段里程」的品牌精神高度契合。精緻的包裝讓公益禮品升級成有故事的設計物件，車主願意隨身攜帶。<br><strong>我做了什麼？</strong>概念發想；將321特展的IP角色-太子爺與汽車品牌精神融合轉譯。護身符視覺設計；圖形、文字、色彩完整設計。包裝精緻化；從提案到實體落地，確保質感達到企業禮品標準。</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px;">
+          <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.08em; border: 1px solid #1a1714; padding: 5px 12px; text-transform: uppercase;">禮品設計</span>
+          <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.08em; border: 1px solid #1a1714; padding: 5px 12px; text-transform: uppercase;">視覺延展</span>
+          <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.08em; border: 1px solid #1a1714; padding: 5px 12px; text-transform: uppercase;">商業合作</span>
+        </div>
+      </div>
+      <div style="border: 1px solid #d8d2c4; margin-bottom: 2px;"><img src="uploads/護身符0606noword-7a7b3091.jpg" style="width: 100%; height: auto; display: block;"></div>
+      <div style="border: 1px solid #d8d2c4; margin-bottom: 2px;"><img src="uploads/護身符0606OL_04-6bd3980c.jpg" style="width: 100%; height: auto; display: block;"></div>
+      <div style="border: 1px solid #d8d2c4;"><img src="uploads/G3-bff8f112.png" style="width: 100%; height: auto; display: block;"></div>
+    </article>
+
+    <!-- P08: 魚頭先生 -->
+<article id="p08_ytxs" style="display: block; padding: 76px 0;">
+      <div style="margin-bottom: 56px;">
+        <div style="display: flex; align-items: baseline; gap: 18px;"><span style="font-family: 'Archivo Black', sans-serif; font-size: 48px; color: #1a1714; line-height: 1;">08</span><span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.1em; color: #6b665e; text-transform: uppercase;">IP 內容 · 社群經營</span></div>
+        <h3 style="font-family: 'Noto Sans TC', sans-serif; font-weight: 900; font-size: 32px; margin: 14px 0 0; line-height: 1.2;">魚頭先生 — 社會議題圖文社群經營</h3>
+        <p style="font-family: 'Noto Serif TC', serif; font-size: 15px; line-height: 1.7; color: #2a2620; margin: 16px 0 0; max-width: 800px;"><strong>抓出痛點：</strong>社會議題內容嚴肅難消化，傳統倡議方式觸及率低，難以引發大眾共鳴與分享。<br><strong>為什麼這樣解？</strong>反直覺的角色操盤——「魚頭先生」不是傳統公益大使，而是一個有個性、有觀點、會說廢話也會說重話的角色。用角色的口吻說出議題的核心，讓人願意讀完、忍不住分享。AI 流程輔助內容產製，維持高頻率更新而不失溫度與質感。<br><strong>我做了什麼？</strong>IP 角色定調；個性設定、說話方式、視覺風格建立。圖文內容產製；社群貼文策劃與設計，從節氣到議題全年度操盤。AI 內容流程；建立可複製的內容生成 SOP，效率與溫度並存。</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px;">
+          <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.08em; border: 1px solid #1a1714; padding: 5px 12px; text-transform: uppercase;">IP 開發</span>
+          <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.08em; border: 1px solid #1a1714; padding: 5px 12px; text-transform: uppercase;">圖文敘事</span>
+          <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.08em; border: 1px solid #1a1714; padding: 5px 12px; text-transform: uppercase;">社群經營</span>
+        </div>
+      </div>
+      <div style="border: 1px solid #d8d2c4; margin-bottom: 2px;"><img src="uploads/魚頭IP01.jpg" style="width: 100%; height: auto; display: block;"></div>
+      <div style="border: 1px solid #d8d2c4; margin-bottom: 2px;"><img src="uploads/魚頭IP03.jpg" style="width: 100%; height: auto; display: block;"></div>
+      <div style="border: 1px solid #d8d2c4;"><img src="uploads/魚頭IP02.jpg" style="width: 100%; height: auto; display: block;"></div>
+    </article>
+  </section>
+
+  <!-- ===================== 03 APPROACH ===================== -->
+  
+
+  <!-- ===================== 04 SERVICES ===================== -->
+  <section id="approach" style="background: #1a1714; color: #f4f1ea; padding: 0 40px;">
+    
+
+    <div style="display: flex; align-items: baseline; gap: 22px; padding: 40px 0 22px;">
+      <span style="font-family: 'Archivo Black', sans-serif; font-size: 30px; color: {{ accent }};">C</span>
+      <span style="font-family: 'Space Mono', monospace; font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase;">方法 / Approach</span>
+      <span style="flex: 1; height: 1px; background: #38332b;"></span>
+      <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #a8a297; text-transform: uppercase;">How I Work</span>
+    </div><p style="font-family: 'Noto Serif TC', serif; font-weight: 500; font-size: 52px; line-height: 1.4; margin: 0; width: 654px; height: 65px">設計是美學，更是精準</p><span style="color: rgb(27, 67, 192); font-size: 58px; width: 288px; height: 87px">翻譯的邏輯—</span><blockquote style="margin: 40px 0 56px; max-width: 1000px;">
+      <div style="width: 690px; height: 186px; font-size: 52px">解決企業痛點、放大影響力，引導社會自然參與，創造真實的美好循環。</div><p></p>
+    </blockquote><div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0; border-top: 1px solid #38332b; padding-bottom: 56px;">
+      <div style="padding: 30px 32px 0 0; border-right: 1px solid #38332b;">
+        <div style="font-family: 'Archivo Black', sans-serif; font-size: 22px; color: {{ accent }};">01</div>
+        <h4 style="font-family: 'Noto Sans TC', sans-serif; font-weight: 900; font-size: 24px; margin: 14px 0 10px;">切換視角</h4>
+        <p style="font-family: 'Noto Serif TC', serif; font-size: 16px; line-height: 1.85; color: #c8c2b7; margin: 0;">先問「這個東西是誰」。站到創辦人、消費者、議題當事人的位置，把感受聽成可以動工的洞察。</p>
+      </div>
+      <div style="padding: 30px 32px; border-right: 1px solid #38332b;">
+        <div style="font-family: 'Archivo Black', sans-serif; font-size: 22px; color: #f4f1ea;">02</div>
+        <h4 style="font-family: 'Noto Sans TC', sans-serif; font-weight: 900; font-size: 24px; margin: 14px 0 10px;">從零建構</h4>
+        <p style="font-family: 'Noto Serif TC', serif; font-size: 16px; line-height: 1.85; color: #c8c2b7; margin: 0;">命名、識別、包裝、空間、社群、口吻——一路想到底。讓品牌的每個接觸點都對得起同一個靈魂。</p>
+      </div>
+      <div style="padding: 30px 0 30px 32px;">
+        <div style="font-family: 'Archivo Black', sans-serif; font-size: 22px; color: #f4f1ea;">03</div>
+        <h4 style="font-family: 'Noto Sans TC', sans-serif; font-weight: 900; font-size: 24px; margin: 14px 0 10px;">落地堅持</h4>
+        <p style="font-family: 'Noto Serif TC', serif; font-size: 16px; line-height: 1.85; color: #c8c2b7; margin: 0;">堅持做到雙方都真的滿意的那個結果。美感要成立，商業也要成立，兩邊都點頭才算數。</p>
+      </div>
+    </div>
+
+    
+  </section><section id="services" style="padding: 0 40px;">
+    <div style="display: flex; align-items: baseline; gap: 22px; padding: 40px 0 22px;">
+      <span style="font-family: 'Archivo Black', sans-serif; font-size: 30px; color: {{ accent }};">D</span>
+      <span style="font-family: 'Space Mono', monospace; font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase;">服務 / Capabilities</span>
+      <span style="flex: 1; height: 1px; background: #c9c3b6;"></span>
+      <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #6b665e; text-transform: uppercase;">What I Do</span>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0 56px; padding: 24px 0 72px;">
+      <div style="display: flex; gap: 24px; padding: 26px 0; border-bottom: 1px solid #c9c3b6;">
+        <div><h4 style="font-family: 'Noto Sans TC', sans-serif; font-weight: 900; font-size: 22px; margin: 0;">品牌策略與識別</h4><p style="font-family: 'Noto Serif TC', serif; font-size: 15px; color: #6b665e; margin: 6px 0 0; line-height: 1.7;">定位、命名、標誌、視覺系統</p></div>
+      </div>
+      <div style="display: flex; gap: 24px; padding: 26px 0; border-bottom: 1px solid #c9c3b6;">
+        <div><h4 style="font-family: 'Noto Sans TC', sans-serif; font-weight: 900; font-size: 22px; margin: 0;">包裝與商業美學</h4><p style="font-family: 'Noto Serif TC', serif; font-size: 15px; color: #6b665e; margin: 6px 0 0; line-height: 1.7;">產品包裝、系列延展、貨架表現</p></div>
+      </div>
+      <div style="display: flex; gap: 24px; padding: 26px 0; border-bottom: 1px solid #c9c3b6;">
+        <div><h4 style="font-family: 'Noto Sans TC', sans-serif; font-weight: 900; font-size: 22px; margin: 0;">展覽與空間敘事</h4><p style="font-family: 'Noto Serif TC', serif; font-size: 15px; color: #6b665e; margin: 6px 0 0; line-height: 1.7;">展覽視覺、動線、議題策展</p></div>
+      </div>
+      <div style="display: flex; gap: 24px; padding: 26px 0; border-bottom: 1px solid #c9c3b6;">
+        <div><h4 style="font-family: 'Noto Sans TC', sans-serif; font-weight: 900; font-size: 22px; margin: 0;">IP 開發與內容操盤</h4><p style="font-family: 'Noto Serif TC', serif; font-size: 15px; color: #6b665e; margin: 6px 0 0; line-height: 1.7;">角色設定、AI 內容產製、圖文社群</p></div>
+      </div>
+      <div style="display: flex; gap: 24px; padding: 26px 0; border-bottom: 1px solid #c9c3b6;">
+        <div><h4 style="font-family: 'Noto Sans TC', sans-serif; font-weight: 900; font-size: 22px; margin: 0;">社會議題轉譯</h4><p style="font-family: 'Noto Serif TC', serif; font-size: 15px; color: #6b665e; margin: 6px 0 0; line-height: 1.7;">公益專案、議題敘事、共創課程</p></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== 05 PROFILE / RÉSUMÉ ===================== -->
+  <section id="profile" style="background: #ece7dc; padding: 0 40px;">
+    <div style="display: flex; align-items: baseline; gap: 22px; padding: 40px 0 22px;">
+      <span style="font-family: 'Archivo Black', sans-serif; font-size: 30px; color: {{ accent }};">E</span>
+      <span style="font-family: 'Space Mono', monospace; font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; color: #1a1714;">簡歷 / Profile</span>
+      <span style="flex: 1; height: 1px; background: #c9c3b6;"></span>
+      <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #6b665e; text-transform: uppercase;">Credentials</span>
+    </div>
+
+    <!-- fact row -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0; border-top: 1.5px solid #1a1714; border-bottom: 1.5px solid #1a1714; margin-top: 14px;">
+      <div style="padding: 30px 28px 30px 0; border-right: 1px solid #c9c3b6;">
+        <div style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: {{ accent }}; text-transform: uppercase; margin-bottom: 12px;">現職 / Now</div>
+        <div style="font-family: 'Noto Sans TC', sans-serif; font-weight: 900; font-size: 24px; line-height: 1.4;">社會企業設計公司</div>
+        <div style="font-family: 'Noto Serif TC', serif; font-size: 15px; color: #6b665e; margin-top: 6px;">品牌策略設計 · IP 內容整合</div>
+      </div>
+      <div style="padding: 30px 28px; border-right: 1px solid #c9c3b6;">
+        <div style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: {{ accent }}; text-transform: uppercase; margin-bottom: 12px;">學歷 / Education</div>
+        <div style="font-family: 'Noto Sans TC', sans-serif; font-weight: 900; font-size: 24px; line-height: 1.4;">國立臺灣師範<div>大學</div></div>
+        <div style="font-family: 'Noto Serif TC', serif; font-size: 15px; color: #6b665e; margin-top: 6px;">設計研究所 碩士&nbsp;</div>
+      </div>
+      <div style="padding: 30px 0 30px 28px;">
+        <div style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: {{ accent }}; text-transform: uppercase; margin-bottom: 12px;">年資 / Experience</div>
+        <div style="font-family: 'Archivo Black', sans-serif; font-size: 42px; line-height: 1;">10<span style="font-size: 24px;">+</span> <span style="font-family: 'Noto Sans TC', sans-serif; font-weight: 900; font-size: 22px;">年</span></div>
+        <div style="font-family: 'Noto Serif TC', serif; font-size: 15px; color: #6b665e; margin-top: 8px;">跨領域品牌與視覺實戰</div>
+      </div>
+    </div>
+
+    <!-- highlights -->
+    <div style="padding: 48px 0 64px;">
+      <div style="font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.16em; color: #6b665e; text-transform: uppercase; margin-bottom: 28px;">專業亮點 / Highlights</div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 28px;">
+        <div style="border-top: 3px solid {{ accent }}; padding-top: 20px;">
+          <div style="font-family: 'Archivo Black', sans-serif; font-size: 20px; color: {{ accent }};">01</div>
+          <h4 style="font-family: 'Noto Sans TC', sans-serif; font-weight: 900; font-size: 28px; margin: 12px 0 10px; line-height: 1.3;">品牌靈魂架構</h4>
+          <p style="font-family: 'Noto Serif TC', serif; font-size: 16px; line-height: 1.85; color: #574f43; margin: 0;">從「品牌 x 為什麼」出發，把抽象的個性建構成可執行、可延展的完整系統。</p>
+        </div>
+        <div style="border-top: 3px solid #1a1714; padding-top: 20px;">
+          <div style="font-family: 'Archivo Black', sans-serif; font-size: 20px; color: #1a1714;">02</div>
+          <h4 style="font-family: 'Noto Sans TC', sans-serif; font-weight: 900; font-size: 28px; margin: 12px 0 10px; line-height: 1.3;">跨領域視覺整合</h4>
+          <p style="font-family: 'Noto Serif TC', serif; font-size: 16px; line-height: 1.85; color: #574f43; margin: 0;">識別、包裝、展覽、社群、空間——多種媒材一致收斂在同一套語言裡。</p>
+        </div>
+        <div style="border-top: 3px solid #1a1714; padding-top: 20px;">
+          <div style="font-family: 'Archivo Black', sans-serif; font-size: 20px; color: #1a1714;">03</div>
+          <h4 style="font-family: 'Noto Sans TC', sans-serif; font-weight: 900; font-size: 28px; margin: 12px 0 10px; line-height: 1.3;">社會議題商業美學轉譯</h4>
+          <p style="font-family: 'Noto Serif TC', serif; font-size: 16px; line-height: 1.85; color: #574f43; margin: 0;">讓嚴肅的公益與社會議題，被翻成大眾願意靠近、願意支持的美感。</p>
+        </div>
+      </div>
+    </div>
+  </section><footer id="contact" style="background: {{ accent }}; color: #f4f1ea; padding: 0 40px;">
+    <div style="display: flex; align-items: baseline; gap: 22px; padding: 40px 0 22px;">
+      <span style="font-family: 'Archivo Black', sans-serif; font-size: 30px; color: #1a1714;">F</span>
+      <span style="font-family: 'Space Mono', monospace; font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; color: #1a1714;">聯絡 / Contact</span>
+      <span style="flex: 1; height: 1px; background: rgba(26,23,20,0.35);"></span>
+      <span style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: rgba(26,23,20,0.7); text-transform: uppercase;">Let's Talk</span>
+    </div>
+
+    <div style="padding: 36px 0 30px;">
+      <h2 style="font-family: 'Archivo Black', sans-serif; font-size: 140px; line-height: 0.86; letter-spacing: -0.03em; margin: 0;">LET'S<br>TALK.</h2>
+      <p style="font-family: 'Noto Serif TC', serif; font-size: 22px; line-height: 1.7; max-width: 620px; margin: 28px 0 0; width: 656px; height: 70px">如果你也相信品牌是有靈魂的，我很樂意聊聊接下來能一起做什麼。目前開放面試與合作邀約。</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0; border-top: 1.5px solid rgba(26,23,20,0.35); border-bottom: 1.5px solid rgba(26,23,20,0.35);">
+      <a href="{{ mailHref }}" style="padding: 26px 24px 26px 0; border-right: 1px solid rgba(26,23,20,0.25); text-decoration: none; color: #f4f1ea;">
+        <div style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: rgba(26,23,20,0.7); text-transform: uppercase; margin-bottom: 8px;">Email</div>
+        <div style="font-family: 'Noto Sans TC', sans-serif; font-weight: 700; font-size: 20px;"><span>fang198271</span><span>@</span><span>gmail</span><span>.</span><span>com</span></div>
+      </a>
+      <div style="padding: 26px 24px; border-right: 1px solid rgba(26,23,20,0.25);">
+        <div style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: rgba(26,23,20,0.7); text-transform: uppercase; margin-bottom: 8px;">CITY</div>
+        <div style="font-family: 'Noto Sans TC', sans-serif; font-weight: 700; font-size: 20px;">New Taipei City<div>新莊</div></div>
+      </div>
+      <div style="padding: 26px 0 26px 24px;">
+        <div style="font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: rgba(26,23,20,0.7); text-transform: uppercase; margin-bottom: 8px;">Status</div>
+        <div style="font-family: 'Noto Sans TC', sans-serif; font-weight: 700; font-size: 20px;">開放面試邀約</div>
+      </div>
+    </div>
+
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 22px 0 30px; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: rgba(26,23,20,0.7); text-transform: uppercase; flex-wrap: wrap; gap: 12px;">
+      <span>© 2026 AGNES WU — 品牌視覺設計</span>
+      <span><br></span>
+      <a href="#top" style="color: #1a1714; text-decoration: none; font-weight: 700;">回到頂部 ↑</a>
+    </div>
+  </footer>
+
+  <!-- ===================== 06 CONTACT / COLOPHON ===================== -->
+  
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;accent&quot;: { &quot;editor&quot;: &quot;color&quot;, &quot;default&quot;: &quot;#1b43c0&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;options&quot;: [&quot;#f03a17&quot;, &quot;#1b43c0&quot;, &quot;#e2541f&quot;, &quot;#1a1714&quot;] },
+  &quot;contentsDark&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot; }
+}">
+class Component extends DCLogic {
+  renderVals() {
+    const accent = this.props.accent ?? '#1b43c0';
+    const dark = this.props.contentsDark ?? true;
+    const user = 'fang198271';
+    const domain = 'gmail' + '.' + 'com';
+    return {
+      mailHref: 'mailto:' + user + '@' + domain,
+      accent,
+      contentsBg: dark ? '#1a1714' : '#f4f1ea',
+      contentsFg: dark ? '#f4f1ea' : '#1a1714',
+      contentsSub: dark ? '#a8a297' : '#6b665e',
+      contentsRule: dark ? '#38332b' : '#d8d2c4',
+    };
+  }
+}
+</script>
+</body>
+</html>
